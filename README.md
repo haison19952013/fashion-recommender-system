@@ -107,7 +107,7 @@ python code_sample/make_recommendations_sample.py
 
 ## License
 
-[Add your license here]
+This project is currently not licensed for external use. All rights reserved.
 
 ---
 
