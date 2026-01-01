@@ -80,7 +80,7 @@ The fashion industry generates massive amounts of visual data daily, making it c
 ```bash
 # Clone the repository
 git clone <new-repository-url>
-cd fashion-recommender
+cd fashion-recommender-system
 
 # Install dependencies
 pip install -r requirements.txt
