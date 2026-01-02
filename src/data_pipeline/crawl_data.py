@@ -26,7 +26,9 @@ def get_keys(input_file: str, max_lines: int) -> FrozenSet[str]:
         
     Raises:
         FileNotFoundError: If input file doesn't exist
-        json.JSONDecodeError: If JSON parsing fails
+        
+    Note:
+        JSON decode errors are logged as warnings and the invalid lines are skipped.
     """
     if not os.path.exists(input_file):
         raise FileNotFoundError(f"Input file not found: {input_file}")
