@@ -9,15 +9,7 @@ import requests
 
 from utils import utils
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('crawl_data.log'),
-        logging.StreamHandler()
-    ]
-)
+# Create logger (will be configured in main())
 logger = logging.getLogger(__name__)
 
 
@@ -149,10 +141,32 @@ def main():
     parser.add_argument("--max_retries", type=int, default=3, help="Max retry attempts per image")
     parser.add_argument("--log_level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"],
                        help="Set logging level")
+    parser.add_argument("--log_file", help="Log file path (default: crawl_data_YYYYMMDD_HHMMSS_PID.log)")
     
     args = parser.parse_args()
     
-    # Set logging level
+    # Configure logging with dynamic log file path
+    if args.log_file:
+        log_file = args.log_file
+    else:
+        # Create default log file with timestamp and process ID
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        pid = os.getpid()
+        log_file = f"crawl_data_{timestamp}_{pid}.log"
+    
+    # Setup logging configuration
+    logging.basicConfig(
+        level=getattr(logging, args.log_level),
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_file),
+            logging.StreamHandler()
+        ]
+    )
+    
+    logger.info(f"Logging to file: {log_file}")
+    
+    # Set logging level (in case it was changed after basicConfig)
     logger.setLevel(getattr(logging, args.log_level))
     
     # Validate arguments
