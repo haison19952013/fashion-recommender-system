@@ -60,6 +60,10 @@ def get_keys(input_file: str, max_lines: int) -> FrozenSet[str]:
         raise
     
     unique_keys = frozenset(keys)
+    if len(unique_keys) == 0 or count == 0:
+        raise ValueError(f"No unique keys found in {input_file}")
+    
+    count = len(keys)
     logger.info(f"Found {len(unique_keys)} unique keys from {count} lines")
     return unique_keys
 
