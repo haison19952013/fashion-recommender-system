@@ -249,7 +249,10 @@ def main():
         logger.info(f"Skipped (already exists): {skipped_count}")
         logger.info(f"Failed: {failed_count}")
         logger.info(f"Total time: {total_time:.2f}s")
-        logger.info(f"Average rate: {i/total_time:.2f} images/sec")
+        if total_time > 0:
+            logger.info(f"Average rate: {i/total_time:.2f} images/sec")
+        else:
+            logger.info("Average rate: 0 (total time too short)")
         logger.info("="*50)
         
     except Exception as e:
