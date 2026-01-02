@@ -93,9 +93,20 @@ def fetch_image(key: str, output_dir: str, base_sleep_time: float, max_retries: 
     url = utils.key_to_url(key)
     logger.debug(f"Fetching image: {url}")
     
+    # Set proper headers to avoid being blocked
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Referer': 'https://www.pinterest.com/',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1'
+    }
+    
     for attempt in range(max_retries):
         try:
-            response = requests.get(url, timeout=30)
+            response = requests.get(url, headers=headers, timeout=30)
             response.raise_for_status()
             
             # Validate content type
