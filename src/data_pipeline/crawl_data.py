@@ -205,6 +205,7 @@ def main():
         failed_count = 0
         start_time = time.time()
         
+        i = 0
         for i, key in enumerate(keys, 1):
             try:
                 result = fetch_image(key, args.output_dir, args.sleep_time, args.max_retries)
