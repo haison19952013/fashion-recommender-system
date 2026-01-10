@@ -8,6 +8,7 @@ This module processes the fashion dataset to create train/test splits with tripl
 import argparse
 import logging
 import os
+import sys
 import time
 
 import numpy as np
@@ -196,4 +197,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
