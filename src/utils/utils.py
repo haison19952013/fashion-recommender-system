@@ -110,7 +110,7 @@ def generate_triplets(
     for i in range(count):
         scene, pos = scene_product[i]
         is_test = i % 10 == 0
-        neg_indices = np.random.randint(0, count - 1, num_neg)
+        neg_indices = np.random.randint(0, count, num_neg)
         for neg_idx in neg_indices:
             _, neg = scene_product[neg_idx]
             if is_test:
