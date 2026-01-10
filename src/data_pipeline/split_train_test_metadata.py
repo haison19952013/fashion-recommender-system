@@ -20,23 +20,6 @@ from utils import utils
 logger = logging.getLogger(__name__)
 
 
-def load_scene_product_pairs(config):
-    """
-    Load valid scene-product pairs from the dataset.
-
-    Args:
-        config: Configuration object containing data paths
-
-    Returns:
-        list: Valid scene-product pairs
-    """
-    logger.info("Loading scene-product pairs...")
-    scene_product_pairs = utils.get_valid_scene_product(
-        config.data.raw_image_path, config.data.metadata_path
-    )
-    logger.info(f"Found {len(scene_product_pairs)} valid scene-product pairs.")
-    return scene_product_pairs
-
 
 def generate_train_test_triplets(scene_product_pairs, num_negative_samples):
     """
