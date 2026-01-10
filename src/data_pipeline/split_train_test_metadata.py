@@ -81,10 +81,16 @@ def save_metadata_files(train_df, test_df, train_path, test_path):
         test_df: Test DataFrame
         train_path: Path to save training metadata
         test_path: Path to save test metadata
+    
+    Note:
+        Creates parent directories if they don't exist.
     """
+    # Ensure parent directories exist
+    os.makedirs(os.path.dirname(train_path), exist_ok=True)
     logger.info(f"Saving training metadata to: {train_path}")
     train_df.to_csv(train_path, index=False)
 
+    os.makedirs(os.path.dirname(test_path), exist_ok=True)
     logger.info(f"Saving test metadata to: {test_path}")
     test_df.to_csv(test_path, index=False)
 
