@@ -144,7 +144,7 @@ def main():
         logger.info(f"Using {num_negative_samples} negative samples per positive pair")
 
         # Set random seed for reproducibility
-        utils.set_seed(config)
+        utils.set_seed(config_obj)
 
         # Load scene-product pairs
         scene_product_pairs = utils.get_valid_scene_product(
