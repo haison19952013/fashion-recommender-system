@@ -112,6 +112,12 @@ def generate_triplets(
         is_test = i % 10 == 0
         neg_indices = np.random.randint(0, count, num_neg)
         for neg_idx in neg_indices:
+            # Ensure negative sample is not the same as the positive sample
+            if neg_idx == i:
+                new_neg_idx = np.random.randint(0, count)
+                while new_neg_idx == i:
+                    new_neg_idx = np.random.randint(0, count)
+                neg_idx = new_neg_idx
             _, neg = scene_product[neg_idx]
             if is_test:
                 test.append((scene, pos, neg))
